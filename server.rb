@@ -2,17 +2,10 @@ require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
 
-env = ENV["RACK_ENV"] || "development"
-
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-
 require './lib/link'
 require './lib/tag'
 require './lib/user'
-
-DataMapper.finalize
-
-DataMapper.auto_upgrade!
+require './data_mapper_setup'
 
 use Rack::Flash, :sweep =>true
 
@@ -54,8 +47,25 @@ post '/users' do
 		session[:user_id] = @user.id
 		redirect to'/'
 	else
-		flash[:notice] = "Sorry, your passwords don't match"
+		flash.now[:errors] = @user.errors.full_messages
 		erb :"users/new"
+	end
+end
+
+get '/sessions/new' do
+	erb :"sessions/new"
+end
+
+post '/sessions' do
+	email = params[:email]
+	password = params[:password]
+	user = User.authenticate(email, password)
+	if user
+		session[:user_id] = user.id
+		redirect to('/')
+	else
+		flash[:errors] = ["The email or password is incorrect"]
+		erb:"sessions/new"
 	end
 end
 
