@@ -10,20 +10,23 @@ class User
 
 	property :id, Serial
 	property :email, String, :unique => true, :message => "This email is already taken"
-
 	property :password_digest, Text
+  property :password_token, Text, :default => " "
+  property :password_token_timestamp, Time, :default => Time.now
 
 	def password=(password)
-		@password = password
+		  @password = password
     	self.password_digest = BCrypt::Password.create(password)
-  	end
+  end
 
-  	def self.authenticate(email, password)
-  		user = first(:email => email)
-  		if user && BCrypt::Password.new(user.password_digest) == password
-  			user
-  		else
-  			nil
-  		end
-  	end
+	def self.authenticate(email, password)
+		user = first(:email => email)
+		if user && BCrypt::Password.new(user.password_digest) == password
+			user
+		else
+			nil
+		end
+	end
+
+ 
 end

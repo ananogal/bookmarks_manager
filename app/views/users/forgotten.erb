@@ -1,0 +1,11 @@
+<% if @user%>
+	<h3>We've just send you an email confirmation.</h3>
+
+<%else%>
+	<h3>Please enter your email</h3>
+	<form action="/users/forgotten" method="post">
+		Email:
+		<input type="text" name="email" />
+		<input type="submit" value="Reset"/>
+	</form>
+<%end%>

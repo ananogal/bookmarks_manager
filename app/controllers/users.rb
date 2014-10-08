@@ -17,3 +17,31 @@ post '/users' do
 		erb :"users/new"
 	end
 end
+
+get '/users/forgotten' do
+	erb :"users/forgotten"
+end
+
+post '/users/forgotten' do
+	@email = params[:email]
+	@user = User.first(:email => @email)
+    if @user 
+        @user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+        @user.password_token_timestamp = Time.now
+        @user.save
+    else
+		flash.now[:errors] = ["The email entered is not correct."]
+	end
+	
+	erb :"users/forgotten"
+end
+
+get '/users/reset_password/:token' do
+	@user = User.first(:password_token => params[:token])
+	if !@user
+		flash.now[:errors] = ["This token is not valid."]
+	elsif @user.password_token_timestamp + 60*60 < Time.now
+		flash.now[:errors] = ["This token is not valid anymore."]
+	end
+	erb :"users/reset_password"
+end
