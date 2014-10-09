@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
+require 'rest-client'
 
 require_relative 'models/link'
 require_relative 'models/tag'
@@ -12,6 +13,9 @@ require_relative 'controllers/tags'
 require_relative 'controllers/users'
 require_relative 'controllers/sessions'
 require_relative 'helpers/application'
+require_relative 'helpers/mailgun'
+
+include Email
 
 use Rack::Flash, :sweep =>true
 enable :sessions
