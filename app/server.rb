@@ -2,6 +2,7 @@ require 'sinatra'
 require 'data_mapper'
 require 'rack-flash'
 require 'rest-client'
+require 'sinatra/partial'
 
 require_relative 'models/link'
 require_relative 'models/tag'
@@ -20,6 +21,6 @@ include Email
 use Rack::Flash, :sweep =>true
 enable :sessions
 set :public_folder, 'public' 
-
+set :partial_template_engine, :erb
 
 
