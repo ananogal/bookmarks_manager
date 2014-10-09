@@ -1,10 +1,9 @@
-env = ENV["RACK_ENV"] || "development"
+if  ENV["RACK_ENV"] == 'production'
+	DataMapper.setup(:default, "postgres://ggklzykmdeqrlp:6RYY_Y3lrixtQFxeAL22lgeUil@ec2-54-83-33-14.compute-1.amazonaws.com:5432/d8vpnv06bnjei1")
+else	
+	env = ENV["RACK_ENV"] || "development"
+	DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
+end
 
-# we're telling datamapper to use a postgres database on localhost. 
-# The name will be "bookmark_manager_test" or "bookmark_manager_development" 
-# depending on the environment
-# DataMapper::Logger.new(STDOUT, :debug)
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-# After declaring your models, you should finalise them
 DataMapper.auto_upgrade!
 DataMapper.finalize
