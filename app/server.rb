@@ -15,6 +15,7 @@ require_relative 'helpers/application'
 
 use Rack::Flash, :sweep =>true
 enable :sessions
+set :public_folder, 'public' 
 
 
 
