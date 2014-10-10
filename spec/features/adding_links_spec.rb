@@ -11,6 +11,22 @@ feature "User add a new link" do
 		expect(link.title).to eq("Makers Academy")
 	end
 
+	scenario "with no title" do
+		expect(Link.count).to eq(0)
+		visit '/links/new'
+		add_link("http://www.makersacademy.com/", "")
+		expect(Link.count).to eq(0)
+		expect(page).to have_content("Title can't be empty")
+	end
+
+	scenario "with no url" do
+		expect(Link.count).to eq(0)
+		visit '/links/new'
+		add_link("", "Makers Academy")
+		expect(Link.count).to eq(0)
+		expect(page).to have_content("Url can't be empty")
+	end
+
 	scenario "With a few tags" do 
 		visit '/links/new'
 		add_link("http://www.makersacademy.com/",
