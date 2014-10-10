@@ -9,10 +9,13 @@ class User
 	attr_accessor :password_confirmation
 
 	property :id, Serial
-	property :email, String, :unique => true, :message => "This email is already taken"
+	property :email, String
 	property :password_digest, Text
-  property :password_token, Text, :default => " "
-  property :password_token_timestamp, Time, :default => Time.now
+  	property :password_token, Text, :default => " "
+  	property :password_token_timestamp, Time, :default => Time.now
+
+  	validates_presence_of :email, :message => "Email not given"
+  	validates_uniqueness_of :email, :message => "This email is already taken"
 
 	def password=(password)
 		  @password = password

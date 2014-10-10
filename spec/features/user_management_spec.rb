@@ -3,7 +3,7 @@ require_relative './helpers/session'
 
 include SessionHelpers
 
-feature "Users signs in" do
+feature "Users signs up" do
 	
 	scenario "when being logged out" do
 		expect{sign_up }.to change(User, :count).by(1)
