@@ -1,10 +1,10 @@
 
 <form action="/users" method="post">
-	Email: 
+	<label>Email:</label> 
 	<p><input type="text" name="email" value="<%= @user ? @user.email : ""%>"/></p>
-	Password: 
+	<label>Password:</label> 
 	<p><input type="password" name="password"/></p>
-	Password confirmation:  
+	<label>Password confirmation:</label> 
 	<p><input type="password" name="password_confirmation" /></p>
-	<p><input type="submit" value="Sign up" class="button"/></p>
+	<p><input id="btn-sign-up" type="submit" value="Sign up" class="button"/></p>
 </form>

@@ -8,6 +8,17 @@ body {
   color:#333;
 }
 
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -110px;
+}
+
 a {
 	text-decoration: none;
 	color: #b77843
@@ -27,6 +38,10 @@ a {
   margin-left: 5px;
   margin-right: 5px;
   text-shadow: 0 0 2px rgba(0,0,0, 0.4); /*for readability*/
+}
+
+.button#btn-sign-up{
+  margin-left: 0px;
 }
 
 a.button.highlighted {
@@ -131,6 +146,10 @@ form input[type="text"], form input[type="password"]{
   color: white;
 }
 
+ul#errors{
+  margin: 33px;
+}
+
 .flash.notice {
     background-color: rgba(67,183,120,0.75);
 }
@@ -142,6 +161,7 @@ form input[type="text"], form input[type="password"]{
 footer {
   display: flex;
   background-color: rgba(0,0,0,0.2);
+  height: 70px; 
 }
 
   footer > * {
@@ -155,8 +175,13 @@ footer {
   footer #technologies {
     -webkit-flex: 1;
     flex: 1;
+    font-size: 12px;
   }
 
   footer p {
     padding: 5px 25px;
+  }
+
+  .footer .push{
+    height: 70px;
   }
