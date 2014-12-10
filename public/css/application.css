@@ -139,23 +139,24 @@ form input[type="text"], form input[type="password"]{
    background-color: rgba(169,29,42,0.75); 
 }
 
- footer {
- 	display: flex;
- 	background-color: rgba(0,0,0,0.2)
+footer {
+  display: flex;
+  background-color: rgba(0,0,0,0.2);
 }
 
- footer > * {
- 	margin: auto inherit;
- }
+  footer > * {
+    margin: auto inherit;
+  }
 
- footer img{
- 	vertical-align: top;
- }
- footer #tecnologies{
- 	-webkit-flex:1;
- 	flex:1;
- }
+  footer img {
+    vertical-align: top;
+  }
 
- footer p {
- 	padding: 5px 25px;
- }
+  footer #technologies {
+    -webkit-flex: 1;
+    flex: 1;
+  }
+
+  footer p {
+    padding: 5px 25px;
+  }

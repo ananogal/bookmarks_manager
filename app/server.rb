@@ -19,5 +19,3 @@ use Rack::Flash, :sweep =>true
 enable :sessions
 set :public_folder, 'public' 
 set :partial_template_engine, :erb
-
-
