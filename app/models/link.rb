@@ -6,6 +6,7 @@ class Link
 	property :title, String
 	property :url, String
 	property :description, String
+	property :created_at, DateTime
 	
 	has n, :tags, :through => Resource
 

@@ -9,7 +9,9 @@ post '/links' do
 	tags = params[:tags].split(' ').map do |tag|
 		Tag.first_or_create(:text => tag, :user_id => session[:user_id])
 	end
-	@link = Link.create(:url => url, :title => title, :tags => tags, :user_id=>session[:user_id], :description => description)
+	@link = Link.create(:url => url, :title => title, :tags => tags, 
+											:user_id => session[:user_id], :description => description, 
+											:created_at => DateTime.now)
 
 	if @link.save
 		redirect to('/')

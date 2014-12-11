@@ -1,10 +1,9 @@
 <li class="link">
 	<a class="title" href="<%= link.url %>"><%= link.title %></a>
 	<acticle class="description">
-		Some text
+		<%= link.description%>
 	</article>
 	<aside class='source'>
-		added yesterday by
-		<a href="#">test@test.com </a>
+		added <time datetime="<%=link.created_at.strftime("%d/%m/%Y %H:%M")%>"><%=link.created_at.strftime("%d/%m/%Y %H:%M")%> </time> by <a href="#"><%=link.user.username%> </a>
 	</aside>
 </li>
