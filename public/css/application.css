@@ -102,6 +102,7 @@ header #user-links > *{
  }
 
 .link .description {
+    display:block;
   	margin: 10px inherit;
 }
 

@@ -6,4 +6,9 @@
 	<aside class='source'>
 		added <time datetime="<%=link.created_at.strftime("%d/%m/%Y %H:%M")%>"><%=link.created_at.strftime("%d/%m/%Y %H:%M")%> </time> by <a href="#"><%=link.user.username%> </a>
 	</aside>
+		<ul id="tags">
+			<% link.tags.each do |tag|%>
+				<%= partial :tag, :locals => {:tag => tag} %>
+			<%end%>
+		</ul>
 </li>
