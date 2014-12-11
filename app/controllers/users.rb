@@ -4,15 +4,12 @@ get '/users/new' do
 end
 
 post '/users' do
-	@email = params[:email]
-
 	if params[:password].empty?
-		flash.now[:errors] =["No password entered"]
+		flash.now[:errors] = ["No password entered"]
 		erb :"users/new"
 	else
-		@user = User.create(:email => @email, 
-							:password => params[:password], 
-							:password_confirmation => params[:password_confirmation])
+		@user = User.create(:email => params[:email], :username => params[:username], 
+						:password => params[:password], :password_confirmation => params[:password_confirmation])
 		if @user.save
 			session[:user_id] = @user.id
 			redirect to'/'

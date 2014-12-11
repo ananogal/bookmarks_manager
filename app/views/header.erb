@@ -2,14 +2,16 @@
   <section id="logo">
     <a href="/">Bookmark Manager</a>
   </section>
-  <aside>
-    <a href="/links/new" class="button highlighted">Add link</a>
-  </aside>
+  <% if current_user %>
+    <aside>
+      <a href="/links/new" class="button highlighted">Add link</a>
+    </aside>
+  <% end %>
   <section id="user-links">
     <% if current_user %>
-      <span id="welcome-message">
+      <aside id="welcome-message">
         Welcome, <%= current_user.email %>  
-      </span>
+      </aside>
       <form id="sign-out" method="post" action="/sessions">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" class='button' value="Sign out">

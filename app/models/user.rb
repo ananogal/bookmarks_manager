@@ -10,12 +10,20 @@ class User
 
 	property :id, Serial
 	property :email, String
+	property :username, String
 	property :password_digest, Text
   property :password_token, Text, :default => " "
   property :password_token_timestamp, Time, :default => Time.now
 
-  	validates_presence_of :email, :message => "Email not given"
-  	validates_uniqueness_of :email, :message => "This email is already taken"
+ 	validates_presence_of :email, :message => "Email not given"
+ 	validates_presence_of :password, :message => "Password not given"
+ 	validates_presence_of :username, :message => "Username not given"
+  validates_uniqueness_of :email, :message => "This email is already taken"
+  validates_uniqueness_of :username, :message => "This username is already taken"
+  validates_format_of :email, :as => :email_address, :message => "Not the correct format for an email."
+
+  has n, :links
+  has n, :tags
 
 	def password=(password)
 		  @password = password

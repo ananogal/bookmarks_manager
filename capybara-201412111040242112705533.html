@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bookmark manager</title>
+	  <link rel="stylesheet" type="text/css" href="/css/reset.css">
+	  <link rel="stylesheet" type="text/css" href="/css/application.css">
+	</head>
+	<body>
+		<section class="wrapper">
+	  	<header>
+  <section id="logo">
+    <a href="/">Bookmark Manager</a>
+  </section>
+  
+    <aside>
+      <a href="/links/new" class="button highlighted">Add link</a>
+    </aside>
+  
+  <section id="user-links">
+    
+      <aside id="welcome-message">
+        Welcome, test@test.com  
+      </aside>
+      <form id="sign-out" method="post" action="/sessions">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" class='button' value="Sign out">
+      </form>
+    
+  </section>
+</header>
+	  	
+	  	<section id="container">
+	  		<div id="new-link">
+	<form action="/links" method="post">
+		<label>Url:</label> 
+		<p> <input type="text" name="url" placeholder="Url"></p>
+		<label>Title:</label>
+		<p> <input type="text" name="title" placeholder="Title"></p>
+		<label>Description:</label>
+		<p> <input type="text" name="description" placeholder="Description"></p>
+		<label>Tags: </label>
+		<p> <input type="text" name="tags" placeholder="Tags (space-separated)"></p>
+		<p><input type="submit" value="Add Link" class="button"></p>
+	</form>
+</div>
+	  	</section>
+	  	<aside class="push"></aside>
+	  </section>
+	  <section class="footer">
+	  	<footer>
+  <section id="makersacademy-logo">
+    <a href="http://www.makersacademy.com/">
+      <img src="http://www.makersacademy.com/images/logo.png">
+    </a>
+  </section>
+  <section id="technologies">
+    <p>
+      I built this page at
+      <a href="http://www.makersacademy.com">Makers Academy,
+      a highly selective 12 week coding course in London</a>.
+    </p>
+    <p>
+      This website is built using Ruby, Sinatra,
+      RSpec, Capybara, HTML and CSS.
+    </p>
+  </section>
+</footer>
+	  </section>
+	</body>
+</html>

@@ -7,8 +7,8 @@ feature "Users signs up" do
 	
 	scenario "when being logged out" do
 		expect{sign_up }.to change(User, :count).by(1)
-		expect(page).to have_content("Welcome, alice@example.com")  
-		expect(User.first.email).to eq("alice@example.com")
+		expect(page).to have_content("Welcome, test@example.com")  
+		expect(User.first.email).to eq("test@example.com")
 	end
 
 	scenario "with a password that doesnt match" do
@@ -23,10 +23,17 @@ feature "Users signs up" do
 		expect(page).to have_content("This email is already taken")	
 	end
 
-	def sign_up (email = "alice@example.com", password = "oranges!", password_confirmation = "oranges!")
+	scenario 'with an username that is already registered' do
+		expect{sign_up}.to change(User, :count).by(1)
+		expect{sign_up}.to change(User, :count).by(0)
+		expect(page).to have_content("This username is already taken")
+	end
+
+	def sign_up (email = "test@example.com", username='test', password = "oranges!", password_confirmation = "oranges!")
 		visit '/users/new'
 		expect(page.status_code).to eq(200)
 		fill_in :email, :with => email
+		fill_in :username, :with => username
 		fill_in :password, :with => password
 		fill_in :password_confirmation, :with => password_confirmation
 		click_button "Sign up"
@@ -38,6 +45,7 @@ feature "Users signs in" do
 
 	before(:each) do
 		User.create(:email => "test@test.com",
+					:username => 'Test',
 					:password => "test",
 					:password_confirmation => "test")
 	end
@@ -62,6 +70,7 @@ feature "User signs out" do
 
 	before(:each) do
 		User.create(:email => "test@test.com",
+					:username => 'Test',
 					:password => "test",
 					:password_confirmation => "test")
 	end
@@ -77,6 +86,7 @@ end
 feature "User resets password" do
 	before(:each) do
 		User.create(:email => "test@test.com",
+					:username => 'Test',
 					:password => "test",
 					:password_confirmation => "test",
 					:password_token => "WDJLPQWJVTIKYERBECGBJNSSZAXZXNMZEPWFDBSHPNDWBFHPRBBQGORKQTYYPTFU",
@@ -109,11 +119,12 @@ feature "User resets password" do
 		expect(page).to have_content("This token is not valid")
 	end
 
-	scenario "checks link in the email with correct token but a with invalid time" do
+	scenario "checks link in the email with correct token but with an invalid time" do
 		User.create(:email => "test2@test.com",
-					:password => "test2",
-					:password_confirmation => "test2",
-					:password_token => "12345678",
+					:username => 'Test2',
+					:password => 'test2',
+					:password_confirmation => 'test2',
+					:password_token => '12345678',
 					:password_token_timestamp => Time.now - 60*60*2)
 
 

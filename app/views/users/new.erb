@@ -2,6 +2,8 @@
 <form action="/users" method="post">
 	<label>Email:</label> 
 	<p><input type="text" name="email" value="<%= @user ? @user.email : ""%>"/></p>
+	<label>Username:</label>
+	<p><input type="text" name="username" /></p>
 	<label>Password:</label> 
 	<p><input type="password" name="password"/></p>
 	<label>Password confirmation:</label> 
