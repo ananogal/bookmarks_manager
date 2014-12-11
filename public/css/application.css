@@ -111,6 +111,19 @@ header #user-links > *{
   	font-size: 12px;
 }
 
+.tag{
+  border-style: solid;
+  border-width: 0.2em;
+  border-color: #82B743;
+  border-radius: 1em;
+  display: inline-block;
+  padding: 3px;
+  font-size: x-small;
+  margin-top: 5px;
+  background-color: #82B743; 
+  color:white;
+}
+
 #notice {
   text-align: center;
   margin: 5px;
