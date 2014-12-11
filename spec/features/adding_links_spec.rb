@@ -16,7 +16,7 @@ feature 'User adds a new link' do
 		expect(page).to have_content('Add link')
 	end
 
-	scenario "When browsing the homepage" do 
+	scenario "when browsing the homepage" do 
 		sign_in('test@test.com', 'test')
 		expect(Link.count).to eq(0)
 		visit '/links/new'

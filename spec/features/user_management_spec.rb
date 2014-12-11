@@ -12,9 +12,9 @@ feature "Users signs up" do
 	end
 
 	scenario "with a password that doesnt match" do
-		expect{ sign_up('a@a.com', 'pass', 'wrong') }.to change(User, :count).by(0)
+		expect{ sign_up('a@a.com', 'a', 'pass', 'wrong') }.to change(User, :count).by(0)
 		expect(current_path).to eq('/users')
-    	expect(page).to have_content("Password does not match the confirmation")
+    expect(page).to have_content("Password does not match the confirmation")
 	end
 
 	scenario "with an email that is already registered" do
@@ -37,7 +37,6 @@ feature "Users signs up" do
 		fill_in :password, :with => password
 		fill_in :password_confirmation, :with => password_confirmation
 		click_button "Sign up"
-
 	end
 end
 

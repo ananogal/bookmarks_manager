@@ -5,7 +5,7 @@ class User
 
 	validates_confirmation_of :password
 
-	attr_reader :password
+	attr_reader :password, :username
 	attr_accessor :password_confirmation
 
 	property :id, Serial
